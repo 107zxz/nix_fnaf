@@ -14,9 +14,12 @@ out vec4 finalColor;
 // NOTE: Add here your custom variables
 uniform sampler2D texture1;
 uniform float time;
+uniform vec4 tint;
 
 // const float SHAKE_INTENSITY = -0.000;
 const float SHAKE_INTENSITY = -0.000;
+
+const float PI = 3.14159265;
  
 void main()
 {
@@ -31,10 +34,12 @@ void main()
 
 
     // NOTE: Implement here your fragment shader code
+    texelColor *= cos(texCoord.x * PI * 5/2 - PI/4);
+    texelColor.a = 1;
     
 
     // final color is the color from the texture 
     //    times the tint color (colDiffuse)
     //    times the fragment color (interpolated vertex color)
-    finalColor = texelColor;
+    finalColor = texelColor * tint;
 }

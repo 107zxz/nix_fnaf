@@ -1,2 +1,5 @@
 main
 result/
+**.dSYM
+.cache
+.DS_Store

@@ -13,8 +13,8 @@ void load_textures() {
     // Blank image for shader shenanigans
     blankImage = GenImageColor(1280, 960, BLANK);
     G_RESC_TEX_BLANK = LoadTextureFromImage(blankImage);
-    R_TEX_CAVEWALLS = LoadTexture("assets/textures/cave2.png");
-    G_RESC_TEX_DIVINGCAGE = LoadTexture("assets/textures/cageG.png");
+    R_TEX_CAVEWALLS = LoadTexture("assets/textures/cave4t.png");
+    G_RESC_TEX_DIVINGCAGE = LoadTexture("assets/textures/cage3.png");
 }
 
 void unload_textures() {
