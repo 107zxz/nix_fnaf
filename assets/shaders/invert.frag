@@ -15,14 +15,17 @@ out vec4 finalColor;
 uniform sampler2D texture1;
 uniform float time;
 
-const float SHAKE_INTENSITY = -0.005;
-
+// const float SHAKE_INTENSITY = -0.000;
+const float SHAKE_INTENSITY = -0.000;
+ 
 void main()
 {
     // Texel color fetching from texture sampler
     vec2 texCoord = fragTexCoord;
     texCoord += vec2(0, time/3);
     texCoord += vec2(sin(time * 100), cos(time * 100)) * SHAKE_INTENSITY;
+
+    if (texCoord.x <0 || texCoord.x > 1) { texCoord.x = -texCoord.x; }
 
     vec4 texelColor = texture(texture1, texCoord);
 

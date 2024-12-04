@@ -1,5 +1,7 @@
-main: src/main.c
-	clang -Wall -lraylib src/main.c -o main
+SOURCES=$(wildcard **/*.c)
+
+main: $(SOURCES)
+	clang -Wall -lraylib $(SOURCES) -o main
 
 run: main
 	./main

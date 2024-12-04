@@ -1,19 +1,12 @@
 #include <raylib.h>
+#include "g_resc.h"
 
 int main() {
     InitWindow(1280, 960, "Hello");
 
     SetTargetFPS(60);
 
-    Shader caveShader = LoadShader(0, "assets/shaders/invert.frag");
-    Shader cageShader = LoadShader(0, "assets/shaders/cage.frag");
-
-
-    Texture2D porn = LoadTexture("assets/textures/cave2.png");
-    Texture2D cage = LoadTexture("assets/textures/cageG.png");
-
-    Image blankImage = GenImageColor(1280, 960, BLANK);
-    Texture2D blankTexture = LoadTextureFromImage(blankImage);
+    g_resc_load();
 
     float zeroTime = 0;
 
@@ -23,27 +16,22 @@ int main() {
 
         BeginDrawing();
 
-            BeginShaderMode(caveShader);
-                SetShaderValueTexture(caveShader, 0, porn);
-                SetShaderValue(caveShader, GetShaderLocation(caveShader, "time"), &totalTime, SHADER_UNIFORM_FLOAT);
-                DrawTexture(blankTexture, 0, 0, WHITE);
+            BeginShaderMode(G_RESC_SHADER_CAVEWALLS);
+                SetShaderValueTexture(G_RESC_SHADER_CAVEWALLS, 0, R_TEX_CAVEWALLS);
+                SetShaderValue(G_RESC_SHADER_CAVEWALLS, GetShaderLocation(G_RESC_SHADER_CAVEWALLS, "time"), &totalTime, SHADER_UNIFORM_FLOAT);
+                DrawTexture(G_RESC_TEX_BLANK, 0, 0, WHITE);
             EndShaderMode();
 
-            BeginShaderMode(cageShader);
-                SetShaderValueTexture(cageShader, 0, cage);
-                SetShaderValue(cageShader, GetShaderLocation(cageShader, "time"), &totalTime, SHADER_UNIFORM_FLOAT);
-                DrawTexture(blankTexture, 0, 0, WHITE);
+            BeginShaderMode(G_RESC_SHADER_DIVINGCAGE);
+                SetShaderValueTexture(G_RESC_SHADER_DIVINGCAGE, 0, G_RESC_TEX_DIVINGCAGE);
+                SetShaderValue(G_RESC_SHADER_DIVINGCAGE, GetShaderLocation(G_RESC_SHADER_DIVINGCAGE, "time"), &totalTime, SHADER_UNIFORM_FLOAT);
+                DrawTexture(G_RESC_TEX_BLANK, 0, 0, WHITE);
             EndShaderMode();
 
         EndDrawing();
     }
 
-    UnloadTexture(porn);
-    UnloadTexture(cage);
-    UnloadShader(caveShader);
-    UnloadShader(cageShader);
-    UnloadImage(blankImage);
-    UnloadTexture(blankTexture);
+    g_resc_unload();
 
     CloseWindow();
 

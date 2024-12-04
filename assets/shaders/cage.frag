@@ -16,6 +16,7 @@ uniform sampler2D texture1;
 uniform float time;
 
 const float SHAKE_INTENSITY = 0.007;
+// const float SHAKE_INTENSITY = 0.000;
 
 void main()
 {

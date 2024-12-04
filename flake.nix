@@ -12,6 +12,7 @@
     packs = with pkgs; [
         raylib
         glslang
+        git
     ];
     in
     {
