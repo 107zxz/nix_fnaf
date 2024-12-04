@@ -1,5 +1,5 @@
-main: main.c
-	clang -Wall -lraylib main.c -o main
+main: src/main.c
+	clang -Wall -lraylib src/main.c -o main
 
 run: main
 	./main

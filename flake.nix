@@ -11,15 +11,18 @@
     pkgs = import nixpkgs {inherit system;};
     packs = with pkgs; [
         raylib
+        glslang
     ];
     in
     {
       packages.default =
-      pkgs.clangStdenv.mkDerivation {
-          name = "main";
-          src = ./.;
-          buildInputs = packs;
-       };
-    }
+        pkgs.clangStdenv.mkDerivation {
+            name = "main";
+            srcs = [
+                ./.
+            ];
+            buildInputs = packs;
+        };
+      }
     );
   }
