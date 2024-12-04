@@ -1,12 +1,12 @@
 #include <raylib.h>
-#include "g_resc.h"
+#include "src/m_resc.h"
 
 int main() {
     InitWindow(1280, 960, "Hello");
 
     SetTargetFPS(60);
 
-    g_resc_load();
+    m_resc_load();
 
     float zeroTime = 0;
 
@@ -31,7 +31,7 @@ int main() {
         EndDrawing();
     }
 
-    g_resc_unload();
+    m_resc_unload();
 
     CloseWindow();
 

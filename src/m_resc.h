@@ -2,8 +2,8 @@
 
 #include <raylib.h>
 
-void g_resc_load();
-void g_resc_unload();
+void m_resc_load();
+void m_resc_unload();
 
 /// Textures
 extern Texture2D G_RESC_TEX_BLANK;

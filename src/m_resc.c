@@ -1,4 +1,4 @@
-#include "g_resc.h"
+#include "m_resc.h"
 #include <stdio.h>
 
 
@@ -29,7 +29,7 @@ Shader G_RESC_SHADER_CAVEWALLS;
 Shader G_RESC_SHADER_DIVINGCAGE;
 
 void load_shaders() {
-    G_RESC_SHADER_CAVEWALLS = LoadShader(0, "assets/shaders/invert.frag");
+    G_RESC_SHADER_CAVEWALLS = LoadShader(0, "assets/shaders/cavewalls.frag");
     G_RESC_SHADER_DIVINGCAGE = LoadShader(0, "assets/shaders/cage.frag");
 }
 
@@ -38,12 +38,12 @@ void unload_shaders() {
     UnloadShader(G_RESC_SHADER_DIVINGCAGE);
 }
 
-void g_resc_load() {
+void m_resc_load() {
     load_textures();
     load_shaders();
 }
 
-void g_resc_unload() {
+void m_resc_unload() {
     unload_textures();
     unload_shaders();
 }
