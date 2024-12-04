@@ -1,5 +1,4 @@
 {
-    "nixEnvSelector.nixFile": "${workspaceFolder}/flake.nix",
     "files.associations": {
         "r_textures.h": "c",
         "g_resc.h": "c",
@@ -7,16 +6,4 @@
         "m_resc.h": "c",
         "r_gen.h": "c"
     },
-    "makefile.launchConfigurations": [
-        {
-            "cwd": "/Users/107zxz/Documents/Programming/C/nix_fnaf",
-            "binaryPath": "/Users/107zxz/Documents/Programming/C/nix_fnaf/main",
-            "binaryArgs": []
-        },
-        {
-            "cwd": "/Users/107zxz/Documents/Programming/C/nix_fnaf",
-            "binaryPath": "/Users/107zxz/Documents/Programming/C/nix_fnaf/t_generation",
-            "binaryArgs": []
-        }
-    ]
 }

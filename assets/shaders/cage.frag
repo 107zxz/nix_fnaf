@@ -21,7 +21,12 @@ const float SHAKE_INTENSITY = 0.007;
 void main()
 {
     // Texel color fetching from texture sampler
-    vec4 texelColor = texture(texture1, fragTexCoord + vec2(sin(time * 100), cos(time * 100)) * SHAKE_INTENSITY);
+
+    vec2 texCoord = fragTexCoord + vec2(sin(time * 100), cos(time * 100)) * SHAKE_INTENSITY;
+
+    if (texCoord.y > 1) {texCoord.y *= -1;}
+
+    vec4 texelColor = texture(texture1, texCoord);
 
     // NOTE: Implement here your fragment shader code
     

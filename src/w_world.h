@@ -1,27 +1,27 @@
 #pragma once
 
-typedef enum {
+typedef enum W_Cave_Resource_Type {
     W_Cave_Resource_Copper
 } W_Cave_Resource_Type;
 
-typedef struct {
+typedef struct W_Cave_Resource {
     W_Cave_Resource_Type type;
     int amount;
 } W_Cave_Resource;
 
-typedef enum {
+typedef enum W_Cave_Section_Type {
     W_Cave_Section_Type_SAFE,
     W_Cave_Section_Type_DANGEROUS,
 } W_Cave_Section_Type;
 
-typedef struct {
+typedef struct W_Cave_Section {
     W_Cave_Section_Type type;
     int n_resources;
     W_Cave_Resource* resources;
 } W_Cave_Section;
 
 // A cave system to be explored.
-typedef struct {
+typedef struct W_Cave {
     int n_sections;
     W_Cave_Section* sections;
 } W_Cave;

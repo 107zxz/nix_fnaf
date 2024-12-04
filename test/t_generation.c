@@ -1,7 +1,9 @@
 #include <stdio.h>
 #include "../src/w_world.h"
+#include "../src/w_rng.h"
 
 int main() {
+
     W_Cave cave = w_cave_make(
         1,
         w_cave_section_make(

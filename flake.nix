@@ -13,6 +13,7 @@
         raylib
         glslang
         git
+        lldb
     ];
     in
     {
