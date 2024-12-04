@@ -1,4 +1,5 @@
 main
+t_generation
 result/
 **.dSYM
 .cache
