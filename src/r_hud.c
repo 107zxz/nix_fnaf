@@ -13,5 +13,5 @@ void r_hud_debug_cage() {
 }
 
 void r_hud_status_message(char* message) {
-    DrawText(message, 15, 15, 32, WHITE);
+    DrawText(message, 15, 15, 32, GRAY);
 }

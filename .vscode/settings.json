@@ -4,6 +4,9 @@
         "g_resc.h": "c",
         "raylib.h": "c",
         "m_resc.h": "c",
-        "r_gen.h": "c"
+        "r_gen.h": "c",
+        "i_notebook.h": "c",
+        "i_equipment.h": "c",
+        "raymath.h": "c"
     },
 }

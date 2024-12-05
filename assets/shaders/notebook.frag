@@ -14,27 +14,31 @@ out vec4 finalColor;
 // NOTE: Add here your custom variables
 uniform sampler2D texture1;
 uniform float time;
+uniform float raisestate;
 uniform vec4 tint;
 
-uniform vec2 mousePos;
+const float SHAKE_INTENSITY = 0.007;
+// const float SHAKE_INTENSITY = 0.000;
 
-const float PI = 3.14159265;
- 
 void main()
 {
     // Texel color fetching from texture sampler
+
     vec2 texCoord = fragTexCoord;
-    texCoord += vec2(0, time/3);
-
-    if (texCoord.x <0 || texCoord.x > 1) { texCoord.x = -texCoord.x; }
-
-    vec4 texelColor = texture(texture1, texCoord);
-
+    texCoord *= vec2(3, 2);
+    texCoord += vec2(0, -0.7);
+    texCoord += vec2(sin(time * 5), cos(time * 5)) * SHAKE_INTENSITY;
 
     // NOTE: Implement here your fragment shader code
-    texelColor *= cos(texCoord.x * PI * 5/2 - PI/4);
-    texelColor.a = 1;
+    texCoord += vec2(0, raisestate);
+    vec4 texelColor = texture(texture1, texCoord);
 
+    if (!(
+        texCoord.x < 2
+        && texCoord.x > 1
+        && texCoord.y > 1
+        && texCoord.y < 2
+    )) texelColor.a = 0;
 
     // final color is the color from the texture 
     //    times the tint color (colDiffuse)
