@@ -1,7 +1,10 @@
 #pragma once
 
-typedef enum I_Equipment_Type {
-    I_Equipment_Type_RADIO
-} I_Equipment_Type;
+void i_equipment_extinguisher_update();
+void i_equipment_extinguisher_draw();
 
-extern float i_equipment_radio_raisestate;
+void i_equipment_crank_update();
+void i_equipment_crank_draw();
+
+void i_equipment_notebook_update();
+void i_equipment_notebook_draw();

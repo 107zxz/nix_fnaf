@@ -1,6 +1,8 @@
 SOURCES=$(wildcard src/*.c)
+HEADERS=$(wildcard src/*.h)
 
-main: $(SOURCES) main.c
+
+main: $(SOURCES) $(HEADERS) main.c
 	clang -Wall -lraylib main.c $(SOURCES) -o main
 
 run: main

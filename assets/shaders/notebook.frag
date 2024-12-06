@@ -17,8 +17,9 @@ uniform float time;
 uniform float raisestate;
 uniform vec4 tint;
 
+uniform sampler2D writing;
+
 const float SHAKE_INTENSITY = 0.007;
-// const float SHAKE_INTENSITY = 0.000;
 
 void main()
 {
@@ -31,7 +32,12 @@ void main()
 
     // NOTE: Implement here your fragment shader code
     texCoord += vec2(0, raisestate);
-    vec4 texelColor = texture(texture1, texCoord);
+
+    // vec4 texelColor1 = texture(texture1, texCoord);
+    // vec4 texelColor2 = texture(writing, texCoord);
+
+    vec4 texelColor = texture(texture1, texCoord) - texture(writing, texCoord);
+    texelColor.a = texture(texture1, texCoord).a;
 
     if (!(
         texCoord.x < 2
