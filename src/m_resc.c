@@ -21,7 +21,7 @@ void load_textures() {
     M_RESC_TEX_CAVEWALLS = LoadTexture("assets/textures/cave4t.png");
     M_RESC_TEX_DIVINGCAGE = LoadTexture("assets/textures/cage3.png");
     M_RESC_TEX_NOTEBOOK = LoadTexture("assets/textures/notebook.png");
-    M_RESC_TEX_WRITING_DEBUG = LoadTexture("assets/textures/note_debug.png");
+    M_RESC_TEX_WRITING_DEBUG = LoadTexture("assets/textures/note_tutorial.png");
     M_RESC_TEX_EXTINGUISHER = LoadTexture("assets/textures/extinguisher.png");
     M_RESC_TEX_CRANK = LoadTexture("assets/textures/crank.png");
 }
