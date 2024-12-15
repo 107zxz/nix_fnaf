@@ -7,35 +7,34 @@
 #include "m_input.h"
 
 
-typedef enum I_Equipment_Raisestate {
-    I_EQUIPMENT_RAISED,
-    I_EQUIPMENT_LOWERED
-} I_Equipment_Raisestate;
-
-I_Equipment_Raisestate extiguisher_raiseState = I_EQUIPMENT_LOWERED;
 float extiguisher_raiseProgress = 0.0;
-
+bool extinguisher_use_was_hovered = false;
 
 void i_equipment_extinguisher_update() {
 
     if (
-        m_input_mousePos.y > 0.60 &&
+        m_input_mousePos.y > 0.66 &&
         m_input_mousePos.x > 0.73 &&
         m_input_mousePos.x < 0.95
     )
-        extiguisher_raiseState = I_EQUIPMENT_RAISED;
+        extiguisher_raiseProgress += GetFrameTime() * 2;
     else
-        extiguisher_raiseState = I_EQUIPMENT_LOWERED;
+        extiguisher_raiseProgress -= GetFrameTime() * 2;
 
-    extiguisher_raiseProgress += GetFrameTime() * (extiguisher_raiseState ? -2 : 2);
     extiguisher_raiseProgress = Clamp(extiguisher_raiseProgress, 0.0, 0.1);
+
+    if (m_input_mousePos.y < 0.66 && extiguisher_raiseProgress > 0.05) {
+        printf("AAAAA\n");
+        fflush(stdout);
+    }
 
 }
 
 void i_equipment_extinguisher_draw() {
 
     BeginShaderMode(M_RESC_SHADER_EXTINGUISHER);
-        SetShaderValueTexture(M_RESC_SHADER_EXTINGUISHER, 0, M_RESC_TEX_EXTINGUISHER);
+        SetShaderValueTexture(M_RESC_SHADER_EXTINGUISHER, GetShaderLocation(M_RESC_SHADER_EXTINGUISHER, "texture1"), M_RESC_TEX_EXTINGUISHER);
+        SetShaderValueTexture(M_RESC_SHADER_EXTINGUISHER, GetShaderLocation(M_RESC_SHADER_EXTINGUISHER, "arrowtex"), M_RESC_TEX_GEN_ARROW);
         SetShaderValue(M_RESC_SHADER_EXTINGUISHER, GetShaderLocation(M_RESC_SHADER_EXTINGUISHER, "time"), &s_cage_depth, SHADER_UNIFORM_FLOAT);
         SetShaderValue(M_RESC_SHADER_EXTINGUISHER, GetShaderLocation(M_RESC_SHADER_EXTINGUISHER, "tint"), &s_cage_tint_fg, SHADER_UNIFORM_VEC4);
         SetShaderValue(M_RESC_SHADER_EXTINGUISHER, GetShaderLocation(M_RESC_SHADER_EXTINGUISHER, "raisestate"), &extiguisher_raiseProgress, SHADER_UNIFORM_FLOAT);
@@ -48,7 +47,7 @@ void i_equipment_crank_update() {
     if (
         m_input_mousePos.x > 0.04 &&
         m_input_mousePos.x < 0.27 &&
-        m_input_mousePos.y > 0.64 &&
+        m_input_mousePos.y > 0.60 &&
         m_input_mousePos.y < 0.85
     )
         s_cage_throttle += GetFrameTime();
@@ -69,7 +68,6 @@ void i_equipment_crank_draw() {
 
 Texture2D notebook_pages[3];
 int notebook_page;
-I_Equipment_Raisestate notebook_raiseState = I_EQUIPMENT_LOWERED;
 float notebook_raiseProgress = 0.0;
 bool notebook_arrow_was_hovered = false;
 
@@ -86,9 +84,11 @@ void i_equipment_notebook_update() {
         m_input_mousePos.x > 0.3 &&
         m_input_mousePos.x < 0.7
     )
-        notebook_raiseState = I_EQUIPMENT_RAISED;
+        notebook_raiseProgress += GetFrameTime() * 10;
     else
-        notebook_raiseState = I_EQUIPMENT_LOWERED;
+        notebook_raiseProgress -= GetFrameTime() * 10;
+
+    notebook_raiseProgress = Clamp(notebook_raiseProgress, 0.0, 0.666);
 
     // Page buttons
     if (
@@ -106,8 +106,6 @@ void i_equipment_notebook_update() {
         notebook_arrow_was_hovered = false;
     }
 
-    notebook_raiseProgress += GetFrameTime() * (notebook_raiseState ? -10 : 10);
-    notebook_raiseProgress = Clamp(notebook_raiseProgress, 0.0, 0.666);
 
 }
 

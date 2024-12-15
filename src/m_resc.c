@@ -14,6 +14,8 @@ Texture2D M_RESC_TEX_WRITING_DEBUG;
 Texture2D M_RESC_TEX_EXTINGUISHER;
 Texture2D M_RESC_TEX_CRANK;
 
+Texture2D M_RESC_TEX_GEN_ARROW;
+
 void load_textures() {
     // Blank image for shader shenanigans
     blankImage = GenImageColor(1280, 960, BLANK);
@@ -24,6 +26,7 @@ void load_textures() {
     M_RESC_TEX_WRITING_DEBUG = LoadTexture("assets/textures/note_tutorial.png");
     M_RESC_TEX_EXTINGUISHER = LoadTexture("assets/textures/extinguisher.png");
     M_RESC_TEX_CRANK = LoadTexture("assets/textures/crank.png");
+    M_RESC_TEX_GEN_ARROW = LoadTexture("assets/textures/arrow.png");
 }
 
 void unload_textures() {
@@ -35,6 +38,7 @@ void unload_textures() {
     UnloadTexture(M_RESC_TEX_WRITING_DEBUG);
     UnloadTexture(M_RESC_TEX_EXTINGUISHER);
     UnloadTexture(M_RESC_TEX_CRANK);
+    UnloadTexture(M_RESC_TEX_GEN_ARROW);
 }
 
 /// Shaders

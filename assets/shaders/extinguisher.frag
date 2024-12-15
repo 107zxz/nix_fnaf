@@ -13,6 +13,7 @@ out vec4 finalColor;
 
 // NOTE: Add here your custom variables
 uniform sampler2D texture1;
+uniform sampler2D arrowtex;
 uniform float time;
 uniform float raisestate;
 uniform vec4 tint;
@@ -33,12 +34,27 @@ void main()
     texCoord += vec2(0, raisestate);
     vec4 texelColor = texture(texture1, texCoord);
 
-    if (!(
+    texelColor.a = 0;
+
+    if (
         texCoord.x < 5
         && texCoord.x > 4
         && texCoord.y > 2
         && texCoord.y < 3
-    )) texelColor.a = 0;
+    ) texelColor = texture(texture1, texCoord);
+
+    // Arrow overlay
+    texCoord.x = texCoord.x * 1.5 - 0.07;
+    texCoord.y = texCoord.y * 2.5 + 0.7;
+    // texelColor.a = 0;
+
+    if ((
+        raisestate > 0.066
+        && texCoord.x < 7
+        && texCoord.x > 6
+        && texCoord.y > 5
+        && texCoord.y < 6
+    )) texelColor = texture(arrowtex, texCoord);
 
     // final color is the color from the texture 
     //    times the tint color (colDiffuse)

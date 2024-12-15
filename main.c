@@ -37,7 +37,7 @@ int main() {
             // Steady Layer
             s_cage_draw();
 
-            r_hud_debug_cage();
+            // r_hud_debug_cage();
 
             // DrawFPS(15, 15);
 
